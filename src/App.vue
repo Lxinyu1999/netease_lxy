@@ -1,7 +1,18 @@
 <template>
-
   <router-view/>
+  <FooterMusic v-show="$store.state.isFooterMusic"/>
 </template>
+
+<script>
+import FooterMusic from "@/components/item/FooterMusic.vue"
+export default {
+  components:{
+    FooterMusic
+  }
+}
+</script>
+
+
 
 <style lang="less">
 // *表示全局样式, 即作用对象是页面上所有元素

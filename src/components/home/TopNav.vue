@@ -7,10 +7,10 @@
         </div>
 
         <div class="topContent">
-            <span>我的</span> 
-            <span class="active">发现</span> 
-            <span>云村</span> 
-            <span>视频</span>
+            <span>自分</span> 
+            <span class="active">発見</span> 
+            <span>クラウド</span> 
+            <span>ビデオ</span>
         </div>
         <div class="topRight">
             <svg class="icon" aria-hidden="true">

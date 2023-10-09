@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- 这里的基础路径BASE_URL是指到public文件的 -->
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+    <!-- 从阿里云导入图标 -->
+    <script src="//at.alicdn.com/t/font_3157290_rizszwyrvya.js"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -12,6 +16,19 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+
+    <!-- 引入rem.js,这里通过BASE URL来导入,也可以用./ -->
+    <script src="./js/rem.js"></script>
+
+
+
+
+
+
+
+
+
+
     <!-- built files will be auto injected -->
   </body>
 </html>

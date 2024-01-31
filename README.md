@@ -44,15 +44,15 @@ npx NeteaseCloudMusicApi@latest
 
 ### 🏠Homepage
 
-![homepage](readme_img/image-3.png)
+<img src="readme_img/image-3.png" alt="homepage" width="300"/>
 
 ### 🎶List
 
-![list](readme_img/image-1.png)
+<img src="readme_img/image-1.png" alt="homepage" width="300"/>
 
 ### 📟Play song
 
-![play](readme_img/image-2.png)
+<img src="readme_img/image-2.png" alt="homepage" width="300"/>
 
 ## 🙏Acknowledgement
 

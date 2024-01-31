@@ -1,11 +1,14 @@
 <template>
+  <!-- 最上面的：返回箭头，歌单，搜索，列表（汉堡包）图标 -->
   <div class="itemMusicTop">
+    <!-- 虚化背景 -->
     <img :src="playlist.coverImgUrl" alt="" class="bgimg" />
     <div class="itemLeft">
+      <!-- 点击左箭头按钮返回到主页 -->
       <svg class="icon" aria-hidden="true" @click="$router.go(-1)">
         <use xlink:href="#icon-zuojiantou"></use>
       </svg>
-      <span>リスト</span>
+      <span>歌单</span>
     </div>
     <div class="itemRight">
       <svg class="icon" aria-hidden="true">
@@ -16,6 +19,7 @@
       </svg>
     </div>
   </div>
+  <!-- 中间的背景小图，上传者头像，简介等 -->
   <div class="itemTopContent">
     <div class="contentLeft">
       <img :src="playlist.coverImgUrl" alt="" />
@@ -30,7 +34,7 @@
       <p class="rightP_one">{{ playlist.name }}</p>
       <div class="right_img">
         <img :src="playlist.creator.backgroundUrl" alt="" />
-        <span>{{ playlist.creator.nickname }}</span>
+        <span style="font-size: 0.27rem">{{ playlist.creator.nickname }}</span>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-youjiantou"></use>
         </svg>
@@ -43,6 +47,7 @@
       </p>
     </div>
   </div>
+  <!-- 最下面的评论数，分享数量，下载图标，多选图标 -->
   <div class="itemTopFooter">
     <div class="footerItem">
       <svg class="icon" aria-hidden="true">
@@ -60,24 +65,47 @@
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-iconfontzhizuobiaozhun023146"></use>
       </svg>
-      <span>ダウンロード</span>
+      <span>下载</span>
     </div>
     <div class="footerItem">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-show_duoxuan"></use>
       </svg>
-      <span>選択</span>
+      <span>多选</span>
     </div>
   </div>
 </template>
 <script>
+import { reactive, toRefs } from "vue";
 export default {
   setup(props) {
-    // console.log(props);
-    // 通过props进行传值，判断如果数据拿不到，就获取sessionStorage中的
-    props.playlist.creator=""
-    
+    // 创建一个本地响应式对象
+    const localPlaylist = reactive({
+      data:
+        //如果 props.playlist 为空或未定义，则尝试从 sessionStorage 中读取名为 "itemDetail" 的项。如果 sessionStorage 中也没有相应数据，data 则初始化为空对象 {}。
+        props.playlist ||
+        JSON.parse(sessionStorage.getItem("itemDetail")) ||
+        {},
+    });
+
+    // 老版本写法：原本通过props进行传值，判断如果数据拿不到，就获取sessionStorage中存储的数据
+    // if (!props.playlist.creator) {
+    //   // 注意重新将json字符串转化为对象形式
+    //   props.playlist.creator = JSON.parse(
+    //     sessionStorage.getItem().playlist
+    //   ).creator;
+    // }
+
     // 对播放量的处理
+
+    // 检查 creator 是否存在: 如果不存在，则尝试从 sessionStorage 中读取保存的数据。
+    if (!localPlaylist.data.creator) {
+      const savedData = JSON.parse(sessionStorage.getItem("itemDetail"));
+      if (savedData && savedData.playlist) {
+        localPlaylist.data.creator = savedData.playlist.creator;
+      }
+    }
+
     function changeCount(num) {
       if (num >= 100000000) {
         return (num / 100000000).toFixed(1) + "亿";
@@ -85,11 +113,13 @@ export default {
         return (num / 10000).toFixed(1) + "万";
       }
     }
-    return{changeCount}
+    // 解构赋值，在模板中你可以直接使用 playlist，而不需要通过 localPlaylist.data.playlist来访问它们。
+    return { playlist: localPlaylist.data, changeCount };
   },
   props: ["playlist"],
 };
 </script>
+
 <style lang="less" scoped>
 .itemMusicTop {
   width: 100%;
@@ -97,7 +127,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // padding: .2rem;
+  // padding: 0.2rem;
   position: relative;
   .itemLeft,
   .itemRight {
@@ -115,12 +145,13 @@ export default {
       fill: #fff; //填充颜色
     }
   }
+  // 虚化的背景图
   .bgimg {
     width: 100%;
     height: 11rem;
-    position: absolute;
-    z-index: -1;
-    filter: blur(30px);
+    position: absolute; // 浮动处理
+    z-index: -1; // 层级调到最底层，让其他元素显示到上层
+    filter: blur(30px); // 设置虚化
   }
 }
 .itemTopContent {
@@ -187,7 +218,7 @@ export default {
       .icon {
         width: 0.26rem;
         height: 0.26rem;
-        margin-top: -0.08rem;
+        margin-top: -0.02rem;
         vertical-align: middle;
       }
     }
@@ -216,24 +247,25 @@ export default {
     }
   }
 }
-.itemTopFooter{
+.itemTopFooter {
   width: 100%;
   height: 1.4rem;
   display: flex;
   justify-content: space-around;
-  margin-top: .2rem;
-  .footerItem{
+  margin-top: 0.2rem;
+  .footerItem {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #fff;
-    .icon{
+    .icon {
       fill: #fff;
     }
-    span{
-      margin-top: .1rem;
+    span {
+      margin-top: 0.2rem;
+      font-size: 0.27rem;
+      font-family: "微软雅黑";
     }
   }
-
 }
 </style>

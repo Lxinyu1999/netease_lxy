@@ -1,10 +1,12 @@
 # MyNetease Project
+
 [![GitHub package version](https://img.shields.io/github/package-json/v/Lxinyu1999/Ashiton.github.io.svg)](https://github.com/Lxinyu1999/Ashiton.github.io)
 ![images](https://img.shields.io/badge/name-lxy-green)
 
 This is a front-end project for a third-party Netease player specifically designed for mobile interfaces.
 
 ## Implementation
+
 - ✅ Full Bucket Development with Vue.js
 - 🔨 Writing backend server code using node.js
 - 🧰 Vant for component library
@@ -13,7 +15,6 @@ This is a front-end project for a third-party Netease player specifically design
 - 📻 Support private FM / daily recommended songs
 - 🚫🤝 No any social function
 - 🛠 More features under development
-
 
 ## Environment
 
@@ -41,18 +42,22 @@ npx NeteaseCloudMusicApi@latest
 
 ## Display
 
-### 🏠Homepage  
-![homepage](readme_img/image-4.png)
+### 🏠Homepage
+
+![homepage](readme_img/image-3.png)
 
 ### 🎶List
+
 ![list](readme_img/image-1.png)
-![list2](readme_img/image.png)
 
 ### 📟Play song
-![play](readme_img/image-1.png)
+
+![play](readme_img/image-2.png)
 
 ## 🙏Acknowledgement
+
 Thanks to
+
 - [Apple Music](https://music.apple.com)
 - [YouTube Music](https://music.youtube.com)
 - [Spotify](https://www.spotify.com)
